@@ -60,10 +60,10 @@
             let lastOtp = '';
 
             // 参数预填 Secret
-            const preSecret = location.search ? decodeURIComponent(location.search.slice(1)) : '';
+            const preSecret = new URLSearchParams(location.hash.slice(1)).get('secret')?.trim() ?? '';
             if (preSecret) {
                 input.value = preSecret;
-                importKeyFromBase32(preSecret.trim())
+                importKeyFromBase32(preSecret)
             }
 
             // 导入密钥
@@ -85,7 +85,7 @@
                     cryptoKey = await crypto.subtle.importKey(
                         'raw',
                         new Uint8Array(bytes),
-                        { name: 'HMAC', hash: 'SHA-1' },
+                        {name: 'HMAC', hash: 'SHA-1'},
                         false,
                         ['sign']
                     );
