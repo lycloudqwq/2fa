@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TOTP Calculator</title>
     <!-- TailwindCSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
     <style>
         ::selection {
             background-color: #22d3ee;
@@ -21,7 +21,7 @@
         <div>
             <label for="secret" class="block text-sm font-medium text-gray-700">TOTP Secret</label>
             <input id="secret" type="text" autocomplete="off"
-                class="mt-1 w-full rounded-xl border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 p-3"
+                class="mt-1 w-full rounded-xl border-2 border-cyan-300 p-3 focus:outline-none"
                 placeholder="Your Secret Key" />
         </div>
 
@@ -29,7 +29,7 @@
         <div class="flex items-center justify-between">
             <div id="code" class="text-5xl font-mono tracking-widest">------</div>
             <button id="copyBtn"
-                class="ml-4 px-4 py-2 rounded-xl bg-cyan-400 text-white hover:bg-cyan-500 focus:outline-none disabled:opacity-50"
+                class="ml-4 px-4 py-2 rounded-xl bg-cyan-400 text-white hover:bg-cyan-500 focus:outline-none"
                 disabled>Copy</button>
         </div>
 
@@ -85,7 +85,7 @@
                     cryptoKey = await crypto.subtle.importKey(
                         'raw',
                         new Uint8Array(bytes),
-                        {name: 'HMAC', hash: 'SHA-1'},
+                        { name: 'HMAC', hash: 'SHA-1' },
                         false,
                         ['sign']
                     );
